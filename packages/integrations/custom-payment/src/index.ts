@@ -1,3 +1,3 @@
-import { prepareCheckout, processCheckout } from "./checkout";
+import { prepareCustomCheckout, processCustomCheckout } from "./checkout";
 
-export { prepareCheckout, processCheckout };
+export { prepareCustomCheckout, processCustomCheckout };

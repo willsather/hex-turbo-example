@@ -1,8 +1,8 @@
-import { prepareCheckout, processCheckout } from "../src/checkout";
+import { prepareCustomCheckout, processCustomCheckout } from "../src/checkout";
 
 describe("checkout", () => {
   it("should prepare a checkout", async () => {
-    const checkout = await await prepareCheckout("30.00", "EUR");
+    const checkout = await prepareCustomCheckout("30.00", "EUR");
 
     expect(checkout).toEqual({
       id: "checkout-one",
@@ -13,7 +13,7 @@ describe("checkout", () => {
   });
 
   it("should process a checkout", async () => {
-    const checkout = await await processCheckout("checkout-one");
+    const checkout = await processCustomCheckout("checkout-one");
 
     expect(checkout).toEqual({
       id: "checkout-one",

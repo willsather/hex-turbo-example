@@ -1,6 +1,6 @@
 import { CustomCheckout } from "./types/CustomCheckout";
 
-export async function prepareCheckout(
+export async function prepareCustomCheckout(
   amount: string,
   currency: string
 ): Promise<CustomCheckout> {
@@ -14,7 +14,7 @@ export async function prepareCheckout(
   });
 }
 
-export async function processCheckout(
+export async function processCustomCheckout(
   checkoutId: string
 ): Promise<CustomCheckout> {
   // POST to payment processor to finalize (or complete) a session/checkout instance

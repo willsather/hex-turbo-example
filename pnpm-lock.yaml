@@ -7,6 +7,13 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@types/jest':
+        specifier: ^29.5.12
+        version: 29.5.12
+      '@types/node':
+        specifier: ^20.10.6
+        version: 20.10.6
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
@@ -251,6 +258,37 @@ importers:
       '@repo/custom-commerce':
         specifier: workspace:*
         version: link:../../integrations/custom-commerce
+      logger:
+        specifier: '*'
+        version: 0.0.1
+      utils:
+        specifier: '*'
+        version: 0.3.1
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../config/eslint
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../config/typescript
+      eslint:
+        specifier: ^8.34.0
+        version: 8.56.0
+      jest:
+        specifier: ^29.5.12
+        version: 29.7.0(@types/node@20.10.6)
+      tsup:
+        specifier: ^8.0.1
+        version: 8.0.2(typescript@5.3.3)
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
+
+  packages/interfaces/payment:
+    dependencies:
+      '@repo/custom-payment':
+        specifier: workspace:*
+        version: link:../../integrations/custom-payment
       logger:
         specifier: '*'
         version: 0.0.1
@@ -1182,7 +1220,7 @@ packages:
     resolution: {integrity: sha512-ok/BTPFzFKVMwO5eOHRrvnBVHdRy9IrsrW1GpMaQ9MCnilNLXQKmAX8s1YXDFaai9xJpac2ySzV0YeRRECr2Vw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
-      '@babel/core': 7.23.3
+      '@babel/core': 7.23.9
       '@jest/types': 29.6.3
       '@jridgewell/trace-mapping': 0.3.20
       babel-plugin-istanbul: 6.1.1
