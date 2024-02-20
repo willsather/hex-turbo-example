@@ -11,10 +11,10 @@ export default async function Page(): Promise<JSX.Element> {
 
       <h2>Products</h2>
       {products.map((product: Product) => (
-        <>
+        <div key={product.id}>
           <h5>{product.title}</h5>
           <p>{product.id}</p>
-        </>
+        </div>
       ))}
     </div>
   );

@@ -1,5 +1,5 @@
 {
-  "name": "@repo/commerce",
+  "name": "@repo/custom-commerce",
   "version": "0.0.1",
   "private": true,
   "main": "./dist/index.js",
@@ -18,8 +18,7 @@
   },
   "dependencies": {
     "logger": "*",
-    "utils": "*",
-    "@repo/custom-commerce": "workspace:*"
+    "utils": "*"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

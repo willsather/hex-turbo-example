@@ -1,4 +1,4 @@
-import { getCustomProducts } from "@repo/custom-integration";
+import { getCustomProducts } from "@repo/custom-commerce";
 import { Product } from "./types/Product";
 
 export default async function getProducts(): Promise<Product[]> {

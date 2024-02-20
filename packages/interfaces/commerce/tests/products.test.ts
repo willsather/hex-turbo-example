@@ -1,7 +1,7 @@
 import getProducts from "../src/products";
 
-jest.mock("@repo/custom-integration", () => ({
-  getCustomProducts: jest.fn().mockResolveValue([
+jest.mock("@repo/custom-commerce", () => ({
+  getCustomProducts: jest.fn().mockResolvedValue([
     { id: "product-one", title: "Product One" },
     { id: "product-two", title: "Product Two" },
   ]),
