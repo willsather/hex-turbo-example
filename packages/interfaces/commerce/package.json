@@ -1,0 +1,38 @@
+{
+  "name": "@repo/commerce",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf dist",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/",
+    "test": "jest"
+  },
+  "dependencies": {
+    "logger": "*",
+    "utils": "*",
+    "@repo/custom-integration": "workspace:*"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.23.3",
+    "@babel/preset-env": "^7.20.2",
+    "@repo/typescript-config": "workspace:*",
+    "babel-jest": "^29.4.2",
+    "eslint": "^8.34.0",
+    "@repo/eslint-config": "workspace:*",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  },
+  "jest": {
+    "preset": "@lingo/jest-config/node"
+  }
+}
