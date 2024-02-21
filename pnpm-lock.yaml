@@ -35,7 +35,7 @@ importers:
     dependencies:
       '@repo/commerce':
         specifier: workspace:*
-        version: link:../../packages/ports/commerce
+        version: link:../../packages/commerce
       next:
         specifier: ^14.0.3
         version: 14.0.4(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
@@ -88,6 +88,9 @@ importers:
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.10.6)
+      jest-mock-extended:
+        specifier: ^3.0.5
+        version: 3.0.5(jest@29.7.0)(typescript@5.3.3)
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -96,7 +99,7 @@ importers:
     dependencies:
       '@repo/commerce':
         specifier: workspace:*
-        version: link:../../packages/ports/commerce
+        version: link:../../packages/commerce
       next:
         specifier: ^14.0.3
         version: 14.0.4(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
@@ -149,11 +152,14 @@ importers:
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.10.6)
+      jest-mock-extended:
+        specifier: ^3.0.5
+        version: 3.0.5(jest@29.7.0)(typescript@5.3.3)
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
 
-  packages/adapters/custom-commerce:
+  packages/commerce:
     dependencies:
       logger:
         specifier: '*'
@@ -164,38 +170,10 @@ importers:
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
-        version: link:../../config/eslint
+        version: link:../config/eslint
       '@repo/typescript-config':
         specifier: workspace:*
-        version: link:../../config/typescript
-      eslint:
-        specifier: ^8.34.0
-        version: 8.56.0
-      jest:
-        specifier: ^29.5.12
-        version: 29.7.0(@types/node@20.10.6)
-      tsup:
-        specifier: ^8.0.1
-        version: 8.0.2(typescript@5.3.3)
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
-
-  packages/adapters/custom-payment:
-    dependencies:
-      logger:
-        specifier: '*'
-        version: 0.0.1
-      utils:
-        specifier: '*'
-        version: 0.3.1
-    devDependencies:
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../../config/eslint
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../../config/typescript
+        version: link:../config/typescript
       eslint:
         specifier: ^8.34.0
         version: 8.56.0
@@ -259,11 +237,8 @@ importers:
 
   packages/config/typescript: {}
 
-  packages/ports/commerce:
+  packages/payment:
     dependencies:
-      '@repo/custom-commerce':
-        specifier: workspace:*
-        version: link:../../adapters/custom-commerce
       logger:
         specifier: '*'
         version: 0.0.1
@@ -273,41 +248,10 @@ importers:
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
-        version: link:../../config/eslint
+        version: link:../config/eslint
       '@repo/typescript-config':
         specifier: workspace:*
-        version: link:../../config/typescript
-      eslint:
-        specifier: ^8.34.0
-        version: 8.56.0
-      jest:
-        specifier: ^29.5.12
-        version: 29.7.0(@types/node@20.10.6)
-      tsup:
-        specifier: ^8.0.1
-        version: 8.0.2(typescript@5.3.3)
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
-
-  packages/ports/payment:
-    dependencies:
-      '@repo/custom-payment':
-        specifier: workspace:*
-        version: link:../../adapters/custom-payment
-      logger:
-        specifier: '*'
-        version: 0.0.1
-      utils:
-        specifier: '*'
-        version: 0.3.1
-    devDependencies:
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../../config/eslint
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../../config/typescript
+        version: link:../config/typescript
       eslint:
         specifier: ^8.34.0
         version: 8.56.0
@@ -4464,6 +4408,17 @@ packages:
       slash: 3.0.0
       stack-utils: 2.0.6
 
+  /jest-mock-extended@3.0.5(jest@29.7.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-/eHdaNPUAXe7f65gHH5urc8SbRVWjYxBqmCgax2uqOBJy8UUcCBMN1upj1eZ8y/i+IqpyEm4Kq0VKss/GCCTdw==}
+    peerDependencies:
+      jest: ^24.0.0 || ^25.0.0 || ^26.0.0 || ^27.0.0 || ^28.0.0 || ^29.0.0
+      typescript: ^3.0.0 || ^4.0.0 || ^5.0.0
+    dependencies:
+      jest: 29.7.0(@types/node@20.10.6)
+      ts-essentials: 7.0.3(typescript@5.3.3)
+      typescript: 5.3.3
+    dev: true
+
   /jest-mock@29.7.0:
     resolution: {integrity: sha512-ITOMZn+UkYS4ZFh83xYAOzWStloNzJFO2s8DWrE4lhtGD+AorgnbkiKERe4wQVBydIGPx059g6riW5Btp6Llnw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -6120,6 +6075,14 @@ packages:
     engines: {node: '>=16.13.0'}
     peerDependencies:
       typescript: '>=4.2.0'
+    dependencies:
+      typescript: 5.3.3
+    dev: true
+
+  /ts-essentials@7.0.3(typescript@5.3.3):
+    resolution: {integrity: sha512-8+gr5+lqO3G84KdiTSMRLtuyJ+nTBVRKuCrK4lidMPdVeEp0uqC875uE5NMcaA7YYMN7XsNiFQuMvasF8HT/xQ==}
+    peerDependencies:
+      typescript: '>=3.7.0'
     dependencies:
       typescript: 5.3.3
     dev: true

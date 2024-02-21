@@ -1,8 +1,4 @@
 /** @type {import("prettier").Config} */
-const config = {
+module.exports = {
   printWidth: 110,
-  singleQuote: true,
-  jsxSingleQuote: true,
 };
-
-export default config;

@@ -1,28 +1,14 @@
-import { render, screen } from '@testing-library/react';
-import HomePage from './page'
-import { CustomProductService } from '@repo/commerce';
+import { render, screen } from "@testing-library/react";
+import Page from "./page";
 
-jest.mock('@repo/commerce');
+jest.mock("./components/productsList");
 
-const mockProductService = CustomProductService as jest.MockedClass<typeof CustomProductService>;
+describe("app-one", () => {
+  it("can render page", async () => {
+    const page = await Page();
+    render(page);
 
-mockProductService.mockImplementation(() => {
-  return {
-    getProduct: jest.fn().mockReturnValue({ id: "product-one", title: "Product One" }),
-    getProducts: jest.fn().mockReturnValue([
-        { id: "product-one", title: "Product One" },
-        { id: "product-two", title: "Product Two" },
-      ]),
-  };
+    expect(screen.getByText("Application #1")).toBeInTheDocument();
+    expect(screen.getByText("Example next.js app router application")).toBeInTheDocument();
+  });
 });
-
-describe('app-two', () => {
-    it('can render page', async () => {
-        const page = await HomePage()
-        render(page)
-
-
-        expect(screen.getByText('Product One')).toBeInTheDocument()
-        expect(screen.getByText('Product Two')).toBeInTheDocument()
-    })
-})
