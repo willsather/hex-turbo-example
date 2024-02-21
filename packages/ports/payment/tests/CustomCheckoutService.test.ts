@@ -1,4 +1,4 @@
-import { prepareCheckout, processCheckout } from "../src/checkout";
+import CustomCheckoutService from "../src/CustomCheckoutService";
 
 jest.mock("@repo/custom-payment", () => ({
   prepareCustomCheckout: jest.fn().mockResolvedValue({
@@ -17,7 +17,8 @@ jest.mock("@repo/custom-payment", () => ({
 
 describe("checkout", () => {
   it("should prepare a checkout", async () => {
-    const checkout = await prepareCheckout("30.00", "EUR");
+    const customCheckoutService = new CustomCheckoutService()
+    const checkout = await customCheckoutService.prepareCheckout("30.00", "EUR");
 
     expect(checkout).toEqual({
       id: "checkout-one",
@@ -28,7 +29,8 @@ describe("checkout", () => {
   });
 
   it("should process a checkout", async () => {
-    const checkout = await processCheckout("checkout-one");
+    const customCheckoutService = new CustomCheckoutService()
+    const checkout = await customCheckoutService.processCheckout("checkout-one");
 
     expect(checkout).toEqual({
       id: "checkout-one",

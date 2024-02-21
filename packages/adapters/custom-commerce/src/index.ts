@@ -1,3 +1,3 @@
-import getCustomProducts from "./products";
+import { getCustomProduct, getCustomProducts } from "./products";
 
-export { getCustomProducts };
+export { getCustomProduct, getCustomProducts };

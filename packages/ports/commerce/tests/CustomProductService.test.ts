@@ -1,4 +1,5 @@
-import getProducts from "../src/products";
+import IProductService from "../src/interfaces/IProductService";
+import CustomProductService from "../src/CustomProductService";
 
 jest.mock("@repo/custom-commerce", () => ({
   getCustomProducts: jest.fn().mockResolvedValue([
@@ -9,7 +10,8 @@ jest.mock("@repo/custom-commerce", () => ({
 
 describe("products", () => {
   it("should get all products", async () => {
-    const allProducts = await getProducts();
+    const customProductService: IProductService = new CustomProductService()
+    const allProducts = await customProductService.getProducts();
 
     expect(allProducts).toEqual([
       { id: "product-one", title: "Product One" },

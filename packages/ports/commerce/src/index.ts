@@ -1,5 +1,6 @@
 import { Product } from "./types/Product";
-import getProducts from "./products";
+import IProductService from "./interfaces/IProductService";
+import CustomProductService from "./CustomProductService";
 
-export { type Product };
-export { getProducts };
+export { type Product, type IProductService };
+export { CustomProductService };

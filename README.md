@@ -38,7 +38,18 @@ Located under `/packages/ports`, you will find two '*interfaces*' which handle t
 
 The goal of the `/packages/ports` to achieve a form of [Dependency Inversion](https://tanzu.vmware.com/developer/blog/write-more-maintainable-testable-code-with-dependency-injection/) by defining an interfaces by which the depending applications (and the custom integrations depend on).  
 
-`app-one` -> `@repo/commerce` <-> `@repo/custom-commerce`
+`app-one` -> `@repo/commerce` -> `@repo/custom-commerce`
+`app-one` -> `@repo/payments` -> `@repo/custom-payments`
+
+However, within `@repo/commerce` and `@repo/payment`, there is an Interface and an implementation.  By exposing an interface via the package, this allows the two `app`s to depend on the interface, while the implementation (ie: `IProductService`) **ALSO** depend on the interface.  This looks something like:
+
+`app-one` -> `IProductService` <- `CustomProductService` -> `@repo/custom-commerce`.
+
+Previously, in a normal turborepo with many integrations, I have experienced projects that have a dependency structure of: 
+
+`app-one` -> `@repo/commerce`
+
+often highly coupling the application to the implementation of whatever the backing commerce engine is.  In this case, dependency inversion would allow for the decoupling of the commerce engine and the application, allowing for swapping the commerce engine completely without the application needing to know (or care). 
 
 
 ## Adapters
