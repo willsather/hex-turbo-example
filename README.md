@@ -1,77 +1,62 @@
-# Turborepo starter
+# Hexagonal Architecture 🤝🏼 Turborepo
 
-This is an official starter Turborepo.
+## Getting Started
 
-## Using this example
+This example is composed of two Next.js applications, two ports (*commerce engine and payment processor*), and two adapters (*custom commerce engine and custom payment processor*)
 
-Run the following command:
+To start using, you can use the following commands: 
 
-```sh
-npx create-turbo@latest
+```bash
+pnpm install
+
+pnpm dev
+
+pnpm build
+
+pnpm test
 ```
 
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
+This project also has some configured some tools like:
 
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
+- [Jest](https://jestjs.io/) for unit testing
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
 
-### Build
 
-To build all apps and packages, run the following command:
+## Applications
+Located under `/apps`, you will find two applications.
+- `app-one`: a simple [Next.js](https://nextjs.org/) app
+- `app-two`: another simple [Next.js](https://nextjs.org/) app
 
-```
-cd my-turborepo
-pnpm build
-```
+## Ports
+Located under `/packages/ports`, you will find two '*interfaces*' which handle the interactions between the applications and the implementations of the custom integrations.  
 
-### Develop
+- `@repo/commerce`: encompasses interactions to commerce engine used by both `app-one` and `app-two` applications
+- `@repo/payments`: encompasses interactions to payment processor used by both `app-one` and `app-two` applications
 
-To develop all apps and packages, run the following command:
 
-```
-cd my-turborepo
-pnpm dev
-```
+The goal of the `/packages/ports` to achieve a form of [Dependency Inversion](https://tanzu.vmware.com/developer/blog/write-more-maintainable-testable-code-with-dependency-injection/) by defining an interfaces by which the depending applications (and the custom integrations depend on).  
 
-### Remote Caching
+`app-one` -> `@repo/commerce` <-> `@repo/custom-commerce`
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+## Adapters
+Located under `/packages/adapters`, you will find two '*implementations*' which handle the specific implementation details of each integration.  An adapter will be dependent on the interface/contract provided by the respective port.
 
-```
-cd my-turborepo
-npx turbo login
-```
+- `@repo/custom-commerce`: defines implementation of a specific commerce engine to be used by both `@repo/commerce`
+- `@repo/custom-payment`: defines implementation of a specific payment processor to be used by both `@repo/payment`
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+## Shared Configuration
+Located under `/packages/config` is all of the shared configuration which the Turborepo uses.  This is a great space to put handy developer tools and code cleanliness configuration. 
 
-```
-npx turbo link
-```
+- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- `@repo/jest-config`: `jest` configurations for `browser` and `node` configurations
+- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
-## Useful Links
 
-Learn more about the power of Turborepo:
+## Useful Turborepo Links
 
 - [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
 - [Caching](https://turbo.build/repo/docs/core-concepts/caching)
