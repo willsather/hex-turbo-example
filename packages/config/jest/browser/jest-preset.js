@@ -4,7 +4,7 @@ module.exports = {
   testEnvironment: 'jsdom',
   testRegex: '(\\.|/)(test|spec)\\.[jt]sx?$',
   testPathIgnorePatterns: ['/dist', '/stubs'],
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
     '^.+\\.(js|jsx)$': ['babel-jest', { presets: ['next/babel'] }],

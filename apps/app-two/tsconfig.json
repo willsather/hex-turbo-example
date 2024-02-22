@@ -1,5 +1,5 @@
 {
-  "extends": "@repo/typescript-config/nextjs.js",
+  "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
     "plugins": [
       {
@@ -10,6 +10,8 @@
   "include": [
     "next-env.d.ts",
     "next.config.js",
+    "**/*.js",
+    "**/*.jsx",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
