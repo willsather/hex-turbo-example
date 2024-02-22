@@ -44,7 +44,7 @@ Located under `/packages`, you will find two **Domains** (`@repo/commerce` and `
 
 ## Subdomains
 
-Within each domain, there are many smaller, individual domains, called **Subdomains**.  *Each* **Domain** under `/packages` are services that expose _each_ **Subdomains**:
+Within each domain, there are many smaller, individual domains, called **Subdomains**.  *Each* **Domain** under `/packages` have service(s) that expose _each_ of the **Subdomains**:
 
 > For example, within the Commerce Domain, there could be Subdomains such as Products, Customers, Carts, Orders, etc.
 
@@ -54,11 +54,13 @@ Within each domain, there are many smaller, individual domains, called **Subdoma
 
 ### Dependency Inversion
 
-The goal of the `/packages/commerce` and `/packages/payments` is to achieve a form of [Dependency Inversion](https://tanzu.vmware.com/developer/blog/write-more-maintainable-testable-code-with-dependency-injection/) by defining an interfaces by which the depending applications (and the custom integrations depend on).
+The goal of the `/packages/commerce` and `/packages/payments` is to achieve a form of [Dependency Inversion](https://tanzu.vmware.com/developer/blog/write-more-maintainable-testable-code-with-dependency-injection/).
 
-These interfaces are called Ports.
+**The interfaces are called Ports (or policy modules) and contain the `subdomain` business logic.**
 
-By exposing an interface via the package, this allows the two applications to depend on the interface, while the implementation (ie: `ProductService` or `CheckoutService`) **ALSO** depend on the interface.  This effectively achieves Dependency Inversion because **BOTH** applications **AND** the `CustomProductService` are dependent on the `ProductService`.
+> For example, within the Products Subdomain, there could be business logic like `getProduct(id: string)` and `getProducts`.
+
+By exposing an interface via the `@repo/commerce`, this allows the two applications to depend on the interface, while the implementation (ie: `ProductService` or `CheckoutService`) **ALSO** depend on the interface.  This effectively achieves Dependency Inversion because **BOTH** applications **AND** the `CustomProductService` are dependent on the `ProductService` interface.
 
 `app-one` -> `@repo/commerce` (`ProductService` <- `CustomProductService`)
 
@@ -76,14 +78,19 @@ Futhermore, the organization and dependency inversion of `@repo/commerce` and `@
 
 
 ### Benefits
-Often with applications with a large amount of dependencies and integrations, the application becomes highly coupled to the implementation of the integration itself. In this case, the commerce engine and the payment processor.
+
+Often with applications with a large amount of dependencies and integrations, the application becomes highly coupled to the implementation of the integration itself - in this case, the commerce engine and the payment processor.
 
 However, dependency inversion allows for the decoupling of the applications and these integrations by defining the domain of which they relate; allowing for easier testing, greater flexibility, and cleaner design as in the future.  Also, these things can make the change/swap of an integration much simpler - without the consuming application needing to know (or care).
 
 
 ## Implementations
 
-Located under each`/packages/**` domain, you will find an '_implementation(s)_' which handle the specific implementation details of each integration. This is called an adapter.  An adapter will be dependent on the interface/contract provided by the respective port.
+Located under each`/packages/**` domain, you will find an '_implementation(s)_' which handle the specific implementation details of each integration. 
+
+**These implementations are called adapters.**
+
+An adapter will be dependent on the interface (policy module) provided by the respective port.
 
 
 ## Shared Configuration
