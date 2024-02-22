@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-This example is composed of two Next.js applications, two ports (_commerce engine and payment processor_), and two adapters (_custom commerce engine and custom payment processor_)
+This example is composed of two Next.js applications, two ports (_commerce engine and payment processor_), and two adapters (_implementation of a commerce engine and implementation of a payment processor_)
 
 To start using, you can use the following commands:
 
