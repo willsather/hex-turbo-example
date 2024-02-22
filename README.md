@@ -32,18 +32,21 @@ Located under `/apps`, you will find two applications.
 
 ## Domain Driven Design
 
-In this simple example, I want to try to use DDD to emphasize and demonstrate a few points.  In this example, I think it's fair to say that the **Domains** are Commerce and Payments.
+In this example, there are two primary **Domains**: 
 
-Located under `/packages`, you will find two '*domains*' (`@repo/commerce` and `@repo/payments`) which handle the interactions between the applications and the implementations of the integrations.
+1. Commerce
+2. Payments
 
-- `@repo/commerce`: encompasses interactions to a commerce engine used by both `app-one` and `app-two` applications
-- `@repo/payments`: encompasses interactions to a payment processor used by both `app-one` and `app-two` applications
+Located under `/packages`, you will find two **Domains** (`@repo/commerce` and `@repo/payments`) which handle the interactions between the applications and the integration implementations.
+
+- `@repo/commerce`: encompasses interactions to a commerce engine used by both `app-one` and `app-two`
+- `@repo/payments`: encompasses interactions to a payment processor used by both `app-one` and `app-two`
 
 ## Subdomains
 
-Within E-commerce, there are many smaller, individual domains, called **Subdomains**.  For example, within the Commerce Domain, there could be Subdomains such as Products, Customers, Carts, Orders, etc.
+Within each domain, there are many smaller, individual domains, called **Subdomains**.  *Each* **Domain** under `/packages` are services that expose _each_ **Subdomains**:
 
-Located *each* domain `/packages`, you will find two services that expose the '*subdomains*':
+> For example, within the Commerce Domain, there could be Subdomains such as Products, Customers, Carts, Orders, etc.
 
 - `ProductService`: defines interactions between `app-one` & `app-two` *AND* the implementation of `CustomProductService`
 - `CheckoutService`: defines interactions between `app-one` & `app-two` *AND* the implementation of `CustomCheckoutService`
@@ -55,7 +58,7 @@ The goal of the `/packages/commerce` and `/packages/payments` is to achieve a fo
 
 These interfaces are called Ports.
 
-By exposing an interface via the package, this allows the two `app`s to depend on the interface, while the implementation (ie: `ProductService` or `CheckoutService`) **ALSO** depend on the interface.  This effectively achieves Dependency Inversion because BOTH the `app-one` and the `CustomProductService` are dependent on the `ProductService`.
+By exposing an interface via the package, this allows the two applications to depend on the interface, while the implementation (ie: `ProductService` or `CheckoutService`) **ALSO** depend on the interface.  This effectively achieves Dependency Inversion because **BOTH** applications **AND** the `CustomProductService` are dependent on the `ProductService`.
 
 `app-one` -> `@repo/commerce` (`ProductService` <- `CustomProductService`)
 
@@ -67,7 +70,7 @@ This can also be applied to the `@repo/payments` domain as well:
 
 ### Bounded Contexts
 
-Futhermore, the organization and dependency inversion of `@repo/commerce` and `@repo/payments` creates a [Bounded Context](https://martinfowler.com/bliki/BoundedContext.html) (aka domain aggregates).  This helps keep each Subdomain small and modular ('_the boundary will help sub domain focus to do only 1 thing and do well_').  Taking the diagram above, you can draw this in like so:
+Futhermore, the organization and dependency inversion of `@repo/commerce` and `@repo/payments` creates a [Bounded Context](https://martinfowler.com/bliki/BoundedContext.html) (aka domain aggregates).  This helps keep each Subdomain small and modular ('_the boundary will help the subdomain focus to do only 1 thing and do well_').  Taking the diagram above, you can draw this in like so:
 
 ![Bounded Context Diagram](./docs/img/bounded_context_diagram.png)
 
@@ -75,7 +78,7 @@ Futhermore, the organization and dependency inversion of `@repo/commerce` and `@
 ### Benefits
 Often with applications with a large amount of dependencies and integrations, the application becomes highly coupled to the implementation of the integration itself. In this case, the commerce engine and the payment processor.
 
-However, dependency inversion allows for the decoupling of the applications and these integrations by defining the domain of which they relate; allowing for easier testing, greater flexibility, and cleaner design as in the future it can make the change/swap of an integration much simpler - without the consuming application needing to know (or care).
+However, dependency inversion allows for the decoupling of the applications and these integrations by defining the domain of which they relate; allowing for easier testing, greater flexibility, and cleaner design as in the future.  Also, these things can make the change/swap of an integration much simpler - without the consuming application needing to know (or care).
 
 
 ## Implementations
