@@ -1,5 +1,5 @@
-import ProductService from "../src/interfaces/ProductService";
-import CustomProductService from "../src/CustomProductService";
+import ProductService from "../../src/products/ProductService";
+import CustomProductService from "../../src/products/CustomProductService";
 
 describe("products", () => {
   it("should get all products", async () => {

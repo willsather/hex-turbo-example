@@ -1,5 +1,5 @@
-import ProductService from "./interfaces/ProductService";
-import { Product } from "./types/Product";
+import ProductService from "./ProductService";
+import { Product } from "./Product";
 
 export default class CustomProductService implements ProductService {
   async getProduct(id: string): Promise<Product> {
