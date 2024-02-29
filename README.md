@@ -1,20 +1,30 @@
 # Hexagonal Architecture 🤝🏼 Turborepo
 
-## Getting Started
 
 This example is composed of two Next.js applications, two ports (_commerce engine and payment processor_), and two adapters (_implementation of a commerce engine and implementation of a payment processor_)
 
-To start using, you can use the following commands:
+## Getting Started
 
+### Install the dependencies:
 ```zsh
-pnpm install
-
-pnpm dev
-
-pnpm build
-
-pnpm test
+$ pnpm install
 ```
+### Compile the app:
+```zsh
+$ pnpm build
+```
+### Run the dev server:
+```zsh
+$ pnpm dev
+```
+The `app-one` and `app-two` will be available on ports 3001 & 3000, respectively.
+
+### Test the app:
+```zsh
+$ pnpm test
+```
+
+### Additional tooling
 
 This project also has some configured some tools like:
 
