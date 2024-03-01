@@ -1,7 +1,9 @@
-import { type ProductService, type Product } from "@repo/commerce";
+import { type Product } from "@repo/commerce";
+import serviceLocator from '../ServiceLocator';
 
-export default async function ProductList({ productService }: { productService: ProductService }) {
+export default async function ProductList() {
   // NOTE: this component ONLY depends on the port
+  const productService = serviceLocator.useProductService();
   const products = await productService.getProducts();
 
   return (

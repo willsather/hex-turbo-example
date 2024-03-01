@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { ProductService } from "@repo/commerce";
 import { mock } from "jest-mock-extended";
 import ProductsList from "./productsList";
+import serviceLocator from "../ServiceLocator";
 
 const mockProductService = mock<ProductService>();
 
@@ -14,7 +15,9 @@ describe("ProductsList", () => {
       { id: "product-two", title: "Product Two" },
     ]);
 
-    const productsList = await ProductsList({ productService: mockProductService });
+    serviceLocator.setProductService(mockProductService);
+
+    const productsList = await ProductsList();
     render(productsList);
 
     expect(screen.getByText("Product One")).toBeInTheDocument();

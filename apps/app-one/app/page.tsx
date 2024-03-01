@@ -1,10 +1,6 @@
-import { CustomProductService, type ProductService } from "@repo/commerce";
 import ProductList from "./components/productsList";
 
-export default function Page(): JSX.Element {
-  // NOTE: this component depends on BOTH the port and the adapter
-  const customProductService: ProductService = new CustomProductService();
-
+export default async function Page(): Promise<JSX.Element> {
   return (
     <div>
       <h1>Application #1</h1>
@@ -15,7 +11,7 @@ export default function Page(): JSX.Element {
       <br />
       <br />
 
-      <ProductList productService={customProductService} />
+      <ProductList />
     </div>
   );
 }
