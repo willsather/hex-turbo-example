@@ -3,7 +3,7 @@ import ProductList from "./components/productsList";
 
 export default function Page(): JSX.Element {
   // NOTE: this component depends on BOTH the port and the adapter
-  const customProductService: ProductService = new CustomProductService();
+  const customProductService: ProductService = CustomProductService.getInstance();
 
   return (
     <div>

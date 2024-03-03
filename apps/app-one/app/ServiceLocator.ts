@@ -5,9 +5,9 @@ class ServiceLocator {
 
     useProductService(): ProductService {
         if (this.productService == undefined) {
-            this.productService = new CustomProductService();
+            this.productService = CustomProductService.getInstance();
         }
-        return this.productService;
+        return this.productService!;
     }
 
     setProductService(productService: ProductService) {
