@@ -1,5 +1,5 @@
 import { type Product } from "@repo/commerce";
-import serviceLocator from '../ServiceLocator';
+import serviceLocator from "../ServiceLocator";
 
 export default async function ProductList() {
   // NOTE: this component ONLY depends on the port

@@ -2,15 +2,14 @@ import ProductService from "./ProductService";
 import { Product } from "./Product";
 
 export default class CustomProductService implements ProductService {
-
-  private static singletonInstance: CustomProductService | undefined
+  private static singletonInstance: CustomProductService | undefined;
 
   static getInstance = (): CustomProductService => {
     if (this.singletonInstance == undefined) {
       this.singletonInstance = new CustomProductService();
     }
     return this.singletonInstance;
-  }
+  };
 
   private constructor() {}
 
